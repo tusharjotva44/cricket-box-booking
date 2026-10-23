@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import SiteHeader from "@/components/site-header";
 import VenueCard from "@/components/venue-card";
 import { demoVenues } from "@/lib/demo-venues";
@@ -9,6 +9,11 @@ export default function ExplorePage() {
   const [search, setSearch] = useState("");
   const [city, setCity] = useState("All cities");
   const [sort, setSort] = useState("recommended");
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get("q") || params.get("city") || "";
+    if (query) setSearch(query);
+  }, []);
   const cities = ["All cities", ...Array.from(new Set(demoVenues.map((venue) => venue.city))).sort()];
   const venues = useMemo(() => {
     const query = search.trim().toLowerCase();
