@@ -4,37 +4,45 @@ A blue-and-white marketplace starter for finding and booking cricket turfs and b
 
 ## Architecture
 - Frontend/server: Next.js App Router + TypeScript
-- Data/auth: Supabase Auth + PostgreSQL
-- Authorization: PostgreSQL Row Level Security (RLS)
+- Data/auth planned: Supabase Auth + PostgreSQL
+- Authorization planned: PostgreSQL Row Level Security (RLS)
 - Payments planned: Razorpay, with server-side signature and webhook verification
 - Deployment planned: Vercel or another supported Node.js host
 
-## Current state
-- Responsive Next.js landing page committed.
-- Supabase browser/server client helpers added.
-- Initial PostgreSQL schema and starter RLS policies added under supabase/migrations/.
-- Environment variable template added as .env.example.
-- The earlier static HTML prototype remains in the repository root as a reference.
+## Current frontend structure
+- `app/page.tsx`: home page and entry points
+- `app/explore/page.tsx`: responsive venue discovery, city/search filters and sort controls
+- `app/customer/page.tsx`: customer dashboard preview
+- `app/customer/bookings/page.tsx`: booking history preview
+- `app/customer/profile/page.tsx`: profile preview
+- `components/site-header.tsx`: shared navigation
+- `components/venue-card.tsx`: reusable venue card
+- `lib/demo-venues.ts`: typed sample data to be replaced by database queries
+- `supabase/migrations/`: initial database schema and starter RLS policies
+- `.env.example`: environment variable template
 
-This is not yet production-ready and cannot accept real bookings or payments. Authentication screens, database provisioning, booking transaction logic, owner/admin workflows, payment verification, automated tests, and deployment still need to be implemented and verified.
+## Current state and important limitations
+The home, explore, and customer pages are frontend previews. Venue examples are fictional sample data for layout and filter testing. Login, live database queries, live slot availability, real bookings, and payments are not enabled. Do not use this preview to accept real bookings or payments.
+
+The initial schema and starter policies still require a security review and tests. Production readiness requires secure authentication, role enforcement, atomic booking logic, payment verification, cancellation/refund handling, monitoring, backups, and deployment verification.
 
 ## Local setup
 1. Install Node.js LTS and Git.
-2. Clone this repository and run npm install.
-3. Copy .env.example to .env.local.
-4. Create a Supabase project and follow supabase/README.md.
-5. Run npm run dev and open http://localhost:3000.
+2. Clone this repository and run `npm install`.
+3. Copy `.env.example` to `.env.local`.
+4. Create a Supabase project and follow `supabase/README.md` when ready to connect the backend.
+5. Run `npm run dev` and open `http://localhost:3000`.
 
-Do not commit .env.local, passwords, payment secrets, or Supabase service-role keys.
+Do not commit `.env.local`, passwords, payment secrets, or Supabase service-role keys.
 
 ## Planned implementation order
-1. Verify the app builds and configure Supabase.
+1. Verify the app builds and refine frontend pages.
 2. Add customer sign-up/sign-in and server-side session handling.
 3. Add owner onboarding and admin-controlled role assignment/venue approval.
-4. Add venue management, images, city search and opening hours.
+4. Replace sample venues with database-backed venue management, images, city search and opening hours.
 5. Implement atomic slot holds/bookings with overlap protection and expiration.
 6. Integrate pay-at-venue and online payment with verified webhooks and idempotency.
-7. Add customer/owner/admin dashboards, notifications and cancellation/refund rules.
+7. Complete customer/owner/admin dashboards, notifications and cancellation/refund rules.
 8. Add automated security, RLS, booking concurrency and payment tests.
 9. Configure production environment variables, domain, monitoring, backups and legal pages.
 
