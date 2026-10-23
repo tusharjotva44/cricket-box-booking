@@ -1,31 +1,46 @@
-# CricketBox — Cricket Turf Booking
+# CricketBox — Cricket Turf Booking Platform
 
-A responsive blue-and-white frontend starter for a marketplace to discover cricket box and turf grounds across India.
+A blue-and-white marketplace starter for finding and booking cricket turfs and box-cricket venues across India.
 
-## Preview locally
-Open `index.html` in a browser. No build step is required.
+## Architecture
+- Frontend/server: Next.js App Router + TypeScript
+- Data/auth: Supabase Auth + PostgreSQL
+- Authorization: PostgreSQL Row Level Security (RLS)
+- Payments planned: Razorpay, with server-side signature and webhook verification
+- Deployment planned: Vercel or another supported Node.js host
 
-## Current prototype
-- Responsive desktop and mobile layout
-- Search sample grounds by city or area
-- Filter by box cricket / open turf
-- Sort sample listings by hourly price
-- Demo dialogs for booking, login and turf-owner actions
-- Accessible labels and reduced-motion support
+## Current state
+- Responsive Next.js landing page committed.
+- Supabase browser/server client helpers added.
+- Initial PostgreSQL schema and starter RLS policies added under supabase/migrations/.
+- Environment variable template added as .env.example.
+- The earlier static HTML prototype remains in the repository root as a reference.
 
-## Important
-The venue names, prices and ratings are **sample demo data**, not verified businesses. This is a frontend prototype only. It does not currently include real accounts, a database, live availability, confirmed reservations, an admin panel, owner dashboard, or payment processing. Do not accept real bookings or payments through this prototype.
+This is not yet production-ready and cannot accept real bookings or payments. Authentication screens, database provisioning, booking transaction logic, owner/admin workflows, payment verification, automated tests, and deployment still need to be implemented and verified.
 
-## Planned development
-1. Select the backend and database (for example, a hosted PostgreSQL service).
-2. Add secure authentication and roles: customer, turf owner, administrator.
-3. Add venue submission, image uploads and admin approval.
-4. Add real slot inventory and booking conflict protection.
-5. Add payment gateway integration and venue-pay option.
-6. Build owner dashboard and admin management panel.
-7. Add tests, privacy policy, terms and deployment configuration.
+## Local setup
+1. Install Node.js LTS and Git.
+2. Clone this repository and run npm install.
+3. Copy .env.example to .env.local.
+4. Create a Supabase project and follow supabase/README.md.
+5. Run npm run dev and open http://localhost:3000.
 
-## Files
-- `index.html` — page structure
-- `style.css` — responsive styling
-- `script.js` — sample search, filters and demo interactions
+Do not commit .env.local, passwords, payment secrets, or Supabase service-role keys.
+
+## Planned implementation order
+1. Verify the app builds and configure Supabase.
+2. Add customer sign-up/sign-in and server-side session handling.
+3. Add owner onboarding and admin-controlled role assignment/venue approval.
+4. Add venue management, images, city search and opening hours.
+5. Implement atomic slot holds/bookings with overlap protection and expiration.
+6. Integrate pay-at-venue and online payment with verified webhooks and idempotency.
+7. Add customer/owner/admin dashboards, notifications and cancellation/refund rules.
+8. Add automated security, RLS, booking concurrency and payment tests.
+9. Configure production environment variables, domain, monitoring, backups and legal pages.
+
+## Security principles
+- Never trust role claims from user-editable signup metadata.
+- Keep privileged keys and payment secrets on the server only.
+- Validate price, venue approval, slot availability and booking ownership server-side.
+- Use RLS and least-privilege grants on exposed tables.
+- Confirm payments only after trusted provider verification/webhook processing.
