@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0759d6">
+  <meta name="description" content="Discover and book cricket turfs and box cricket grounds across India.">
+  <title>CricketBox — Find your game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="CricketBox home"><span class="brand-mark">CB</span><span>cricket<span class="brand-blue">box</span></span></a>
+    <nav class="desktop-nav" aria-label="Main navigation"><a href="#explore">Explore turfs</a><a href="#how-it-works">How it works</a><a href="#list-turf">List your turf</a></nav>
+    <div class="header-actions"><button class="btn btn-light" id="loginBtn">Log in</button><a class="btn btn-primary" href="#explore">Book a turf <span aria-hidden="true">↗</span></a></div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="live-dot"></span> YOUR NEXT MATCH STARTS HERE</div>
+        <h1>Find your ground.<br><span>Own the game.</span></h1>
+        <p class="hero-text">Discover box cricket and turf grounds around you. Pick your slot, bring your team, and play.</p>
+        <form class="search-panel" id="searchForm">
+          <label class="search-field"><span class="field-icon">⌖</span><span class="field-content"><span class="field-label">CITY OR AREA</span><input id="cityInput" type="text" placeholder="e.g. Ahmedabad, Mumbai" autocomplete="address-level2"></span></label>
+          <label class="search-field"><span class="field-icon">▦</span><span class="field-content"><span class="field-label">PLAY TYPE</span><select id="typeInput"><option value="all">All grounds</option><option value="box">Box cricket</option><option value="turf">Open turf</option></select></span></label>
+          <button class="btn btn-primary search-button" type="submit">Find a turf <span>→</span></button>
+        </form>
+        <div class="hero-trust"><span class="avatar-stack"><i>🏏</i><i>🏆</i><i>⚡</i></span><span><strong>Game on, anytime.</strong><br><small>Find a ground that fits your team.</small></span></div>
+      </div>
+      <div class="hero-art" aria-label="Illustration of a cricket ground">
+        <div class="art-sun"></div><div class="art-tag">IT'S MATCH TIME <span>✦</span></div>
+        <div class="stadium"><div class="stadium-lights"><i></i><i></i><i></i><i></i></div><div class="field-ring ring-one"></div><div class="field-ring ring-two"></div><div class="pitch"><span></span><span></span></div><div class="ball">●</div></div>
+        <div class="art-bottom"><span>YOUR TEAM. YOUR TURF.</span><span>LET'S PLAY ↗</span></div>
+      </div>
+    </section>
+    <section class="quick-stats" aria-label="Platform highlights"><div><strong>01</strong><span>Find nearby grounds</span></div><div><strong>02</strong><span>Compare hourly prices</span></div><div><strong>03</strong><span>Book your game slot</span></div><div><strong>04</strong><span>Show up and play</span></div></section>
+    <section class="section explore-section" id="explore">
+      <div class="section-heading"><div><div class="eyebrow">PICK YOUR PLAYING FIELD</div><h2>Grounds worth playing on<span>.</span></h2><p>Explore sample listings while we build the booking platform.</p></div><div class="result-count" id="resultCount">3 sample grounds</div></div>
+      <div class="filter-row"><div class="chips" role="group" aria-label="Filter grounds"><button class="chip active" data-filter="all">All grounds</button><button class="chip" data-filter="box">Box cricket</button><button class="chip" data-filter="turf">Open turf</button></div><select id="sortInput" class="sort-select" aria-label="Sort grounds"><option value="recommended">Recommended</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select></div>
+      <div class="ground-grid" id="groundGrid"></div>
+      <div class="empty-state hidden" id="emptyState"><div>🏏</div><h3>No grounds match that search</h3><p>Try another city or remove a filter.</p><button class="btn btn-primary" id="resetSearch">Show all sample grounds</button></div>
+      <p class="demo-note">Demo preview: venue names, prices and availability are sample data, not live listings.</p>
+    </section>
+    <section class="how-section" id="how-it-works"><div class="section-heading"><div><div class="eyebrow">THREE STEPS. ONE GREAT GAME.</div><h2>From search to sixes.</h2></div></div><div class="steps-grid"><article class="step-card"><span class="step-number">01</span><div class="step-icon">⌕</div><h3>Discover</h3><p>Search by city, explore ground types, and compare hourly rates.</p></article><article class="step-card"><span class="step-number">02</span><div class="step-icon">▦</div><h3>Choose your slot</h3><p>Pick a time that works for your team. Live slot booking is coming next.</p></article><article class="step-card"><span class="step-number">03</span><div class="step-icon">🏏</div><h3>Play together</h3><p>Bring your squad, enjoy the game, and make every ball count.</p></article></div></section>
+    <section class="owner-banner" id="list-turf"><div class="owner-icon">🏟️</div><div><div class="eyebrow">FOR TURF OWNERS</div><h2>Got a ground? Get it in the game.</h2><p>We're building a place for turf owners across India to showcase venues and manage bookings.</p></div><button class="btn btn-white" id="ownerBtn">I'm a turf owner <span>→</span></button></section>
+  </main>
+  <footer class="site-footer"><a class="brand" href="#"><span class="brand-mark">CB</span><span>cricket<span class="brand-blue">box</span></span></a><span>Made for the love of the game. 🏏</span><span>© <span id="year"></span> CricketBox</span></footer>
+  <dialog id="infoDialog" class="info-dialog"><button class="dialog-close" id="closeDialog" aria-label="Close dialog">×</button><div class="dialog-icon">🏏</div><h2 id="dialogTitle">Coming soon</h2><p id="dialogText">We're building this feature for you.</p><button class="btn btn-primary" id="dialogOkay">Got it</button></dialog>
+  <script src="script.js"></script>
+</body>
+</html>
