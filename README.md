@@ -15,6 +15,11 @@ A blue-and-white marketplace starter for finding and booking cricket turfs and b
 - `app/customer/page.tsx`: customer dashboard preview
 - `app/customer/bookings/page.tsx`: booking history preview
 - `app/customer/profile/page.tsx`: profile preview
+- `app/owner/page.tsx`: owner dashboard preview with subscription status, venue cards and booking summaries
+- `app/owner/plans/page.tsx`: monthly and yearly subscription plan preview
+- `app/owner/listings/new/page.tsx`: venue listing form preview gated conceptually by active subscription
+- `app/owner/bookings/page.tsx`: owner booking management preview
+- `app/admin/page.tsx`: super-admin dashboard preview for owner subscriptions, venue and booking metrics
 - `components/site-header.tsx`: shared navigation
 - `components/venue-card.tsx`: reusable venue card
 - `lib/demo-venues.ts`: typed sample data to be replaced by database queries
@@ -22,7 +27,7 @@ A blue-and-white marketplace starter for finding and booking cricket turfs and b
 - `.env.example`: environment variable template
 
 ## Current state and important limitations
-The home, explore, and customer pages are frontend previews. Venue examples are fictional sample data for layout and filter testing. Login, live database queries, live slot availability, real bookings, and payments are not enabled. Do not use this preview to accept real bookings or payments.
+The home, explore, and customer pages are frontend previews. Venue examples are fictional sample data for layout and filter testing. Login, live database queries, live slot availability, real bookings, owner/admin authorization, subscription activation, and payments are not enabled. Owner and admin pages use fictional demo records; displayed plan prices are placeholders and plan buttons do not charge or activate a subscription. Do not use this preview to accept real bookings or payments.
 
 The initial schema and starter policies still require a security review and tests. Production readiness requires secure authentication, role enforcement, atomic booking logic, payment verification, cancellation/refund handling, monitoring, backups, and deployment verification.
 
